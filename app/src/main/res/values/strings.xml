@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Магазин техники</string>
+    <string name="save_quetions">Сохранить изменения?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="deleteAll">Удалить все элементы?</string>
+    <string name="allProductsDeleted">Все товары удалены</string>
+    <string name="notDeleted">Удаление отменена</string>
+    <string name="data_save">Данные сохранены</string>
+    <string name="otmenaInsert">Товар не возможно добавить</string>
+    <string name="updateData">Данные обновлены</string>
+    <string name="otmenaSave">Сохранение данных отменена</string>
+    <string name="remove">Удалить данный товар?</string>
+    <string name="product_remove_in_list">Товар удален из списка</string>
+    <string name="update">Редактировать товар</string>
+    <string name="insertNew">Добавить новый товар</string>
+    <string name="zapolnite">Заполните пустые поля!</string>
+    <string name="title">Наименование товара</string>
+    <string name="price">Цена</string>
+    <string name="manufacture">Производитель</string>
+    <string name="quantity">Количество доступного товара</string>
+    <string name="title_text">Наименование:</string>
+    <string name="price_text">Цена: $</string>
+    <string name="quantity_text">Количество доступного товара:</string>
+    <string name="manufacture_text">Производитель:</string>
+</resources>
