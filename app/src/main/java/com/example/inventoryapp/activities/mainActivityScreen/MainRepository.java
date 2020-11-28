@@ -1,31 +1,26 @@
 package com.example.inventoryapp.activities.mainActivityScreen;
 
 import android.app.Application;
-import android.content.Context;
 import android.os.AsyncTask;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import com.example.inventoryapp.data.InventoryDao;
 import com.example.inventoryapp.data.InventoryDatabase;
-import com.example.inventoryapp.model.Inventory;
+import com.example.inventoryapp.data.model.Inventory;
 
 import java.util.List;
 
 public class MainRepository {
 
     private InventoryDao inventoryDao;
-    private List<Inventory> allInventory;
+    private LiveData<List<Inventory>> allInventory;
 
-    public List<Inventory> getAllInventory() {
+    public LiveData<List<Inventory>> getAllInventory() {
         return allInventory;
     }
 
-    public MainRepository(Context context) {
+    public MainRepository(Application context) {
         InventoryDatabase database = InventoryDatabase.getInstance(context);
         inventoryDao = database.inventoryDao();
         allInventory = inventoryDao.getAllInventory();

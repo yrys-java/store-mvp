@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.inventoryapp.model.Inventory;
+import com.example.inventoryapp.data.model.Inventory;
 
 @Database(entities = {Inventory.class}, version = 7, exportSchema = false)
 public abstract class InventoryDatabase extends RoomDatabase {

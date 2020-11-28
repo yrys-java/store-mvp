@@ -1,6 +1,8 @@
 package com.example.inventoryapp.activities.mainActivityScreen;
 
-import com.example.inventoryapp.model.Inventory;
+import androidx.lifecycle.LiveData;
+
+import com.example.inventoryapp.data.model.Inventory;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ public interface Contract {
         void update(Inventory inventory);
         void delete(Inventory inventory);
         void deleteAll();
-        List<Inventory> getAllInventory();
+        LiveData<List<Inventory>> getAllInventory();
 
     }
 

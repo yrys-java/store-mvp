@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.inventoryapp.model.Inventory;
+import com.example.inventoryapp.data.model.Inventory;
 
 import java.util.List;
 
@@ -26,6 +26,6 @@ public interface InventoryDao {
     void deleteAll();
 
     @Query("SELECT * FROM inventories ORDER BY price ASC")
-     List<Inventory> getAllInventory();
+     LiveData<List<Inventory>> getAllInventory();
 
 }

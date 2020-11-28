@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AddInventoryActivity extends AppCompatActivity {
+public class AddInventoryActivity extends AppCompatActivity implements Contract.View {
 
     public static final String EXTRA_ID = "package com.example.inventoryapp.EXTRA_ID";
     public static final String EXTRA_NAME = "package com.example.inventoryapp.EXTRA_NAME";
@@ -39,14 +40,17 @@ public class AddInventoryActivity extends AppCompatActivity {
     private EditText editPrice;
     private EditText editQuantity;
     private EditText editManufacture;
-    private ImageView imageViewInventory;
+    public static ImageView imageViewInventory;
     private String currentImagePath = null;
+    private Presenter presenter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_inventory_activivty);
+
+        presenter = new Presenter(this);
 
         editTitle = findViewById(R.id.edit_title);
         editPrice = findViewById(R.id.edit_price);
@@ -133,7 +137,8 @@ public class AddInventoryActivity extends AppCompatActivity {
             }
 
             if (imageFile != null) {
-                Uri imageUrl = FileProvider.getUriForFile(this, "com.example.android.fileProviders", imageFile);
+                Uri imageUrl = FileProvider
+                        .getUriForFile(this, "com.example.android.fileProviders", imageFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
                 Glide.with(this).load(imageFile).into(imageViewInventory);
                 startActivityForResult(cameraIntent, 1);
@@ -142,6 +147,7 @@ public class AddInventoryActivity extends AppCompatActivity {
     }
 
     private File getImageFile() throws IOException {
+        @SuppressLint("SimpleDateFormat")
         String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String name = "jpg_" + time + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);

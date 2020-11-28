@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,10 +20,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.inventoryapp.activities.addInventoryScreen.AddInventoryActivity;
-import com.example.inventoryapp.model.Inventory;
+import com.example.inventoryapp.data.model.Inventory;
 import com.example.inventoryapp.adapter.InventoryAdapter;
 import com.example.inventoryapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements Contract.View{
@@ -52,7 +55,15 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
         final InventoryAdapter adapter = new InventoryAdapter();
         recyclerView.setAdapter(adapter);
 
-        presenter =  new MainPresenter(this);
+        presenter = ViewModelProviders.of(this).get(MainPresenter.class);
+
+        presenter.getAllInventory().observe(this, new Observer<List<Inventory>>() {
+            @Override
+            public void onChanged(List<Inventory> inventories) {
+                adapter.setInventories(inventories);
+            }
+        });
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

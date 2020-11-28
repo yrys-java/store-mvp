@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.inventoryapp.R;
-import com.example.inventoryapp.model.Inventory;
+import com.example.inventoryapp.data.model.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;

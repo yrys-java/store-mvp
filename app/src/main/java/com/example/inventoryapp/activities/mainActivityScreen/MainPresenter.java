@@ -1,28 +1,29 @@
 package com.example.inventoryapp.activities.mainActivityScreen;
 
 import android.app.Application;
-import android.content.Context;
-import android.util.Log;
 
-import com.example.inventoryapp.model.Inventory;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import com.example.inventoryapp.data.model.Inventory;
 
 import java.util.List;
 
-public class MainPresenter implements Contract.Presenter{
+public class MainPresenter extends AndroidViewModel implements Contract.Presenter {
 
-    Contract.View view;
     MainRepository repository;
+    LiveData<List<Inventory>> getAllInventory;
 
-    public MainPresenter(Contract.View mView) {
-        this.view = mView;
-        this.repository = new MainRepository(this);
+    public MainPresenter(Application application) {
+        super(application);
+        repository = new MainRepository(application);
+        getAllInventory = repository.getAllInventory();
     }
 
 
     @Override
     public void insert(Inventory inventory) {
         repository.insert(inventory);
-        Log.d("TAG", "insert: "+inventory);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class MainPresenter implements Contract.Presenter{
     }
 
     @Override
-    public List<Inventory> getAllInventory() {
+    public LiveData<List<Inventory>> getAllInventory() {
         return repository.getAllInventory();
     }
 }
