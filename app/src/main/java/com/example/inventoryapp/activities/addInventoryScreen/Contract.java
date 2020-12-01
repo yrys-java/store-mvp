@@ -1,6 +1,5 @@
 package com.example.inventoryapp.activities.addInventoryScreen;
 
-import java.io.File;
 
 public interface Contract {
 
@@ -9,7 +8,6 @@ public interface Contract {
     }
 
     interface View{
-
     }
 }
 

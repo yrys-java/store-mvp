@@ -20,7 +20,6 @@ public class MainPresenter extends AndroidViewModel implements Contract.Presente
         getAllInventory = repository.getAllInventory();
     }
 
-
     @Override
     public void insert(Inventory inventory) {
         repository.insert(inventory);

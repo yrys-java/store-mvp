@@ -40,7 +40,7 @@ public class AddInventoryActivity extends AppCompatActivity implements Contract.
     private EditText editPrice;
     private EditText editQuantity;
     private EditText editManufacture;
-    public static ImageView imageViewInventory;
+    private ImageView imageViewInventory;
     private String currentImagePath = null;
     private Presenter presenter;
 

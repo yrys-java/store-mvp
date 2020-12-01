@@ -27,7 +27,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity implements Contract.View{
 
     private MainPresenter presenter;
@@ -68,13 +67,14 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle);
                 builder.setTitle(R.string.remove);
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -94,8 +94,6 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
-
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -146,8 +144,6 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
             inventory.setId(id);
             presenter.update(inventory);
             Toast.makeText(this, R.string.updateData, Toast.LENGTH_SHORT).show();
-
-
         } else {
             Toast.makeText(this, R.string.otmenaSave, Toast.LENGTH_SHORT).show();
         }
